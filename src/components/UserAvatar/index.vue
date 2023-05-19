@@ -8,7 +8,7 @@
 import { computed } from 'vue'
 import { NAvatar } from 'naive-ui'
 import { useUserStore } from '@/store'
-import defaultAvatar from '@/assets/avatar.jpg'
+import defaultAvatar from '@/assets/avatar1.jpg'
 import { isString } from '@/utils/is'
 
 const userStore = useUserStore()
@@ -38,12 +38,12 @@ const userInfo = computed(() => userStore.userInfo)
       <h6 class="overflow-hidden text-xs text-gray-500 text-ellipsis whitespace-nowrap">
         {{ userInfo.email }}
       </h6>
-      <!-- <p class="overflow-hidden text-xs text-gray-500 text-ellipsis whitespace-nowrap">
+      <p class="overflow-hidden text-xs text-gray-500 text-ellipsis whitespace-nowrap">
         <span
           v-if="isString(userInfo.description) && userInfo.description !== ''"
           v-html="userInfo.description"
         />
-      </p> -->
+      </p>
     </div>
   </div>
 </template>

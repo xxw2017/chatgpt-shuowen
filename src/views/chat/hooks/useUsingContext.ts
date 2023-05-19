@@ -23,7 +23,7 @@ export function useUsingContext() {
     if (usingContext.value)
       ms.success(t('chat.turnOnContext'))
     else
-      ms.warning(t('chat.turnOffContext'))
+      ms.error(t('chat.turnOffContext'))
   }
 
   return {

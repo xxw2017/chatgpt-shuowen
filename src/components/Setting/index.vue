@@ -44,6 +44,7 @@ const show = computed({
             <SvgIcon class="text-lg" icon="ri:list-settings-line" />
             <span class="ml-2">{{ $t('setting.config') }}</span>
           </template>
+          <!-- 基本配置 -->
           <General />
         </NTabPane>
         <NTabPane name="General" tab="General">
