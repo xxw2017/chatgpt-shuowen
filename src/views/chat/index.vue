@@ -548,12 +548,12 @@ onUnmounted(() => {
               <SvgIcon icon="ri:delete-bin-line" />
             </span>
           </HoverButton>
-          <HoverButton v-if="!isMobile" tooltip="保存会话到图片" @click="handleExport">
+          <HoverButton v-if="!isMobile" tooltip="保存会话为图片" @click="handleExport">
             <span class="text-xl text-[#4f555e] dark:text-white">
               <SvgIcon icon="ri:download-2-line" />
             </span>
           </HoverButton>
-          <HoverButton v-if="!isMobile" tooltip="切换聊天模式" @click="toggleUsingContext">
+          <HoverButton v-if="!isMobile" tooltip="是否保存上下文" @click="toggleUsingContext">
             <span class="text-xl" :class="{ 'text-[#4b9e5f]': usingContext, 'text-[#a8071a]': !usingContext }">
               <SvgIcon icon="ri:chat-history-line" />
             </span>

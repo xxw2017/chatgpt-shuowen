@@ -7,7 +7,7 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
 import type { FormInst, FormRules } from 'naive-ui'
-import { NButton, NForm, NFormItem, NInput, useMessage } from 'naive-ui'
+import { NButton, NCheckbox, NForm, NFormItem, NInput, useMessage } from 'naive-ui'
 import { loginEmail } from '@/api/login'
 import type { loginModel } from '@/api/login'
 import { useAuthStore } from '@/store'
@@ -21,8 +21,9 @@ const loading = ref(false)
 // 表单相关
 const formRef = ref<FormInst | null>(null)
 const userInfo = ref({
-  email: '',
-  passWord: '',
+  email: localStorage.getItem('email') || '',
+  passWord: localStorage.getItem('passWord') || '',
+  rememberPwd: localStorage.getItem('rememberPwd') === 'true',
 })
 
 const rules: FormRules = {
@@ -80,6 +81,17 @@ async function pushClick() {
     // 登录成功后 存token并且请求用户基础数据
     authStore.setToken(data?.token)
 
+    if (userInfo.value.rememberPwd) {
+      localStorage.setItem('rememberPwd', 'true')
+      localStorage.setItem('email', userInfo.value.email)
+      localStorage.setItem('passWord', userInfo.value.passWord)
+    }
+    else {
+      localStorage.removeItem('rememberPwd')
+      localStorage.removeItem('email')
+      localStorage.removeItem('passWord')
+    }
+
     // 成功弹框
     ms.success('success')
     // 重载页面
@@ -114,6 +126,11 @@ function handlePress(event: KeyboardEvent) {
     </NFormItem>
     <NFormItem path="passWord" :label="$t('common.passWord')">
       <NInput v-model:value="userInfo.passWord" type="password" show-password-on="mousedown" @keypress="handlePress" />
+    </NFormItem>
+    <NFormItem>
+      <NCheckbox v-model:checked="userInfo.rememberPwd">
+        记住密码
+      </NCheckbox>
     </NFormItem>
   </NForm>
   <NButton

@@ -23,7 +23,7 @@ export interface UserState {
 export function defaultSetting(): UserState {
   return {
     userInfo: {
-      avatar: 'https://inews.gtimg.com/newsapp_bt/0/13236651963/1000',
+      avatar: '',
       name: '熊十三',
       description: '一个有趣的灵魂',
       id: '',
